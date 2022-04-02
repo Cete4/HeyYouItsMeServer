@@ -19,6 +19,7 @@ class RestController {
 
     @GetMapping(value = ["/message"])
     fun message(): Message {
+        println("This is where we'll get something form the DB")
         return Message(
             id = 1,
             content = "You're amazing"
