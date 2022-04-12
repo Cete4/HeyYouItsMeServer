@@ -1,41 +1,39 @@
 package com.example.heyyouitsmeserver.controller
 
-import com.example.heyyouitsmeserver.model.Message
+import com.example.heyyouitsmeserver.repo.MessageRepository
+import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
-@RequestMapping("/ingredients")
+@RequestMapping("/api")
 @RestController
-class messageController {
+class MessageController() {
 
     @Autowired
+    lateinit var repository: MessageRepository
+
 
     @GetMapping(value = ["/message"])
-    fun getMessage(): Message {
+    fun getMessage(): String {
         println("EVENT: /api/message GET")
-        return Message()
+        return "{\"message\": \"success\"," + "\"messages\"" + ":" + Gson().toJson(repository.findAll()) + "}"
     }
 
     @PostMapping(value = ["/message"])
-    fun postMessage(): Success {
+    fun postMessage(): String {
         println("EVENT: /api/message POST")
-        return Success()
+        return "Success"
     }
 
     @PutMapping(value = ["/message"])
-    fun putMessage(): Success {
+    fun putMessage(): String {
         println("EVENT: /api/message POST")
-        return Success()
+        return "Success"
     }
 
     @DeleteMapping(value = ["/message"])
-    fun deleteMessage(): Success {
+    fun deleteMessage(): String {
         println("EVENT: /api/message POST")
-        return Success()
+        return "Success"
     }
-
-    data class Success(
-        val message: String = "Success"
-    )
-
 }
