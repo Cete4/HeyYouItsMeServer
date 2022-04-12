@@ -1,23 +1,22 @@
 package com.example.heyyouitsmeserver.controller
 
-import com.example.heyyouitsmeserver.model.Message
 import com.example.heyyouitsmeserver.repo.MessageRepository
+import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/api")
 @RestController
-class MessageController (){
+class MessageController() {
 
     @Autowired
     lateinit var repository: MessageRepository
 
+
     @GetMapping(value = ["/message"])
     fun getMessage(): String {
         println("EVENT: /api/message GET")
-        var message = Message("It worked");
-        repository.save(message)
-        return "Success"
+        return "{\"message\": \"success\"," + "\"messages\"" + ":" + Gson().toJson(repository.findAll()) + "}"
     }
 
     @PostMapping(value = ["/message"])
@@ -38,4 +37,8 @@ class MessageController (){
         return "Success"
     }
 
+
+    data class SuccessMessage(val message: String) {
+
+    }
 }
