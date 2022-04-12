@@ -36,9 +36,4 @@ class MessageController() {
         println("EVENT: /api/message POST")
         return "Success"
     }
-
-
-    data class SuccessMessage(val message: String) {
-
-    }
 }
