@@ -6,16 +6,19 @@ import javax.persistence.*
 
 @Entity
 @JsonIgnoreProperties
-class Message {
+class Message(private val str: String) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    var id: Long? = null
+    var id: Long = 0
 
 
     @JsonProperty
-    var content: String = "";
+    var content: String = str;
 
 
+    override fun toString(): String {
+        return "Message(id=$id, content='$content')"
+    }
 }
