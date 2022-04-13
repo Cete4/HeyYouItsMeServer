@@ -22,16 +22,16 @@ class MessageController() {
 
     @PostMapping(value = ["/message"])
     fun postMessage(@RequestBody message: Message): String {
-        println(message)
         repository.save(message)
         println("EVENT: /api/message POST")
         return "{\"message\": \"success\"," + "\"messages\"" + ":" + Gson().toJson(repository.findAll()) + "}"
     }
 
     @PutMapping(value = ["/message"])
-    fun putMessage(): String {
-        println("EVENT: /api/message POST")
-        return "Success"
+    fun putMessage(@RequestBody message: Message): String {
+        println("EVENT: /api/message PUT")
+        repository.save(message)
+        return "{\"message\": \"success\"," + "\"messages\"" + ":" + Gson().toJson(repository.findAll()) + "}"
     }
 
     @DeleteMapping(value = ["/message"])
