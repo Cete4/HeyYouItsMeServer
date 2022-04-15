@@ -35,8 +35,14 @@ class MessageController() {
     }
 
     @DeleteMapping(value = ["/message"])
-    fun deleteMessage(): String {
+    fun deleteMessage(@RequestBody message: Message): String {
         println("EVENT: /api/message POST")
-        return "Success"
+        try {
+            repository.deleteById(message.id)
+            return "Success"
+        } catch (error: Exception) {
+            println(error)
+            return "ERROR: Starting at Line 38 in MessageController.kt"
+        }
     }
 }
