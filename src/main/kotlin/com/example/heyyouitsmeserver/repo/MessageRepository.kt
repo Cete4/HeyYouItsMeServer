@@ -5,8 +5,4 @@ import org.springframework.stereotype.Repository
 import com.example.heyyouitsmeserver.model.Message
 
 @Repository
-interface MessageRepository : CrudRepository<Message, Long> {
-
-
-
-}
+interface MessageRepository : CrudRepository<Message, Long> {}
